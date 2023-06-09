@@ -1,5 +1,5 @@
 import { products, createProduct } from './create_product.js';
-import { card_items } from './shoppingcard.js';
+import { cardItems } from './shoppingcard.js';
 // make a poduct in the DOM
 
 // KONSTANTEN / VARIABLEN
@@ -23,20 +23,21 @@ const appendEventlisteners = () => {
 
 const addToCard = event => {
     // get the product ID from the klicked article
-    const klicketID =  event.target.parentNode.childNodes[0].innerHTML
-    console.log(klicketID)
+    const klickedID =  parseInt(event.target.parentNode.childNodes[0].innerHTML)
+    console.log(klickedID)
+    cardItems.push(klickedID)
+    console.log('cardItems:', cardItems)
     // card_items.append(addToCardButtons)
 }
 
 const populatePage = () => {
-
+    // make a main tag
     const parent = document.querySelector('main');
-    //create a  container for all products and put in the main tag
+    //create a  container for all products
     const containerProducts = document.createElement('div');
-
     parent.append(containerProducts);
 
-    // create product properties from the product array
+    // create html from the product array
     products.forEach(i => {
         // product container
         const productContainer = document.createElement('div');

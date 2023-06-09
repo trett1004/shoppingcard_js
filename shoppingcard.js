@@ -1,2 +1,2 @@
-export const card_items = [];
+export const cardItems = [];
 
