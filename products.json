@@ -1,0 +1,16 @@
+
+[
+    {
+      "header": "New Mushroom 1",
+      "id": 1,
+      "image": "/images/red_umbrella.jpeg",
+      "productText": "New item description 1",
+      "price": 12.99,
+      "unit": "pcs",
+      "priceunit": "$"
+    }
+]
+
+
+
+// // further productspecs to be added

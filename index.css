@@ -1,0 +1,43 @@
+/* body*/
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif, sans-serif;
+  }
+
+main {
+    margin-top: 20px;
+    margin-left: 10px;
+
+}
+
+/* products in Shop */
+.productContainer {
+    margin-top: 50px;
+    margin-bottom: 10px;
+}
+
+.productImages {
+    width: 300px;
+    height: 200px;
+}
+
+.productHeader {
+    font-size: 12px;
+    margin-top: 5px;
+    margin-bottom: 0px;
+}
+
+.productDescription {
+    font-size: small;
+    margin-top: 0px;
+    margin-bottom: 0px;
+}
+
+.price {
+    margin-top: 5px;
+    margin-bottom: 1px;
+    font-size: 13px;
+}
+
+
+
+
