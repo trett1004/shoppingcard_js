@@ -21,8 +21,11 @@ const appendEventlisteners = () => {
     });
 }
 
-const addToCard = () => {
-    console.log("hello")
+const addToCard = event => {
+    // get the product ID from the klicked article
+    const klicketID =  event.target.parentNode.childNodes[0].innerHTML
+    console.log(klicketID)
+    // card_items.append(addToCardButtons)
 }
 
 const populatePage = () => {
@@ -39,6 +42,11 @@ const populatePage = () => {
         const productContainer = document.createElement('div');
         productContainer.classList.add('productContainer')
         containerProducts.append(productContainer);
+        // Product Id
+        const productId = document.createElement('div');
+        productId.innerHTML = i["id"]
+        productContainer.classList.add('productId')
+        productContainer.append(productId)
         //image
         const image = document.createElement('img');
         image.src = i["image"];
