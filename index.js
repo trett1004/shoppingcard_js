@@ -7,15 +7,25 @@ const elements = {};
 
 // FUNKTIONEN
 const domMapping = () => {
+    elements.main = document.querySelector('main');
+    elements.buttons = Array.from(document.querySelectorAll('button'));
+
+    // console.log('elements.main:', elements);
+
+
+
 
 }
 
-const appendEventlisteners = () => {
 
+const appendEventlisteners = () => {
+    elements.buttons.forEach(button => {
+        // Do something with each button
+        console.log(button);
+    });
 }
 
 const populatePage = () => {
-    console.log(products);
 
     const parent = document.querySelector('main');
     //create a  container for all products and put in the main tag
@@ -54,7 +64,7 @@ const populatePage = () => {
         btn_add_to_card.innerHTML = 'Add to card'
         btn_add_to_card.classList.add('btn', 'btn-dark', 'btn-sm')
         // btn_add_to_card.
-            // productContainer.append(btn_add_to_card)
+        productContainer.append(btn_add_to_card)
 
     });
 };
@@ -62,9 +72,9 @@ const populatePage = () => {
 
 
 const init = () => {
+    populatePage();
     domMapping();
     appendEventlisteners();
-    populatePage();
 }
 
 // INIT
