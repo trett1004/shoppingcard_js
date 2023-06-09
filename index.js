@@ -8,21 +8,21 @@ const elements = {};
 // FUNKTIONEN
 const domMapping = () => {
     elements.main = document.querySelector('main');
-    elements.buttons = Array.from(document.querySelectorAll('button'));
+    elements.addToCardButtons = Array.from(document.querySelectorAll('button.addToCardBtn'));
 
     // console.log('elements.main:', elements);
-
-
-
-
 }
 
 
 const appendEventlisteners = () => {
-    elements.buttons.forEach(button => {
-        // Do something with each button
-        console.log(button);
+    // Eventlistener for all addToCard buttons
+    elements.addToCardButtons.forEach(button => {
+        addEventListener('click', addToCard)
     });
+}
+
+const addToCard = () => {
+    console.log("hello")
 }
 
 const populatePage = () => {
@@ -62,7 +62,7 @@ const populatePage = () => {
         // shoppingcard button
         const btn_add_to_card = document.createElement('button')
         btn_add_to_card.innerHTML = 'Add to card'
-        btn_add_to_card.classList.add('btn', 'btn-dark', 'btn-sm')
+        btn_add_to_card.classList.add('btn', 'btn-dark', 'btn-sm', 'addToCardBtn')
         // btn_add_to_card.
         productContainer.append(btn_add_to_card)
 
