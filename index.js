@@ -1,5 +1,6 @@
-import { products, createProduct } from './create_product.js';
+import { products } from './create_product.js';
 import { cardItems } from './shoppingcard.js';
+
 // make a poduct in the DOM
 
 // KONSTANTEN / VARIABLEN
@@ -8,26 +9,34 @@ const elements = {};
 // FUNKTIONEN
 const domMapping = () => {
     elements.main = document.querySelector('main');
-    elements.addToCardButtons = Array.from(document.querySelectorAll('button.addToCardBtn'));
-
-    // console.log('elements.main:', elements);
 }
 
 
 const appendEventlisteners = () => {
-    // Eventlistener for all addToCard buttons
-    elements.addToCardButtons.forEach(button => {
-        addEventListener('click', addToCard)
-    });
+
 }
 
 const addToCard = event => {
     // get the product ID from the klicked article
     const klickedID =  parseInt(event.target.parentNode.childNodes[0].innerHTML)
-    console.log(klickedID)
-    cardItems.push(klickedID)
-    console.log('cardItems:', cardItems)
-    // card_items.append(addToCardButtons)
+    // cardItems['id'] = klickedID;
+    if (cardItemExistanceCheck(cardItems, klickedID)) {
+        const item = cardItems.find(item => item.id === klickedID);
+        item.count = item.count + 1;
+        console.log('updated quantity:', item)
+    } else {
+        cardItems.push({id:klickedID, count:1});
+        console.log('newly added to card:', {id:klickedID, count:1})
+    }
+};
+
+const cardItemExistanceCheck = (array, id) => {
+    if (array.some(obj => obj.id === id)) return true;
+    else return false;
+};
+
+const createNewCardItem = (idNumber) => {
+    return {id:idNumber, count:1}
 }
 
 const populatePage = () => {
@@ -45,8 +54,8 @@ const populatePage = () => {
         containerProducts.append(productContainer);
         // Product Id
         const productId = document.createElement('div');
+        productId.classList.add('productId')
         productId.innerHTML = i["id"]
-        productContainer.classList.add('productId')
         productContainer.append(productId)
         //image
         const image = document.createElement('img');
@@ -72,13 +81,12 @@ const populatePage = () => {
         const btn_add_to_card = document.createElement('button')
         btn_add_to_card.innerHTML = 'Add to card'
         btn_add_to_card.classList.add('btn', 'btn-dark', 'btn-sm', 'addToCardBtn')
-        // btn_add_to_card.
         productContainer.append(btn_add_to_card)
+        // Eventlistener
+        btn_add_to_card.addEventListener('click', addToCard)
 
     });
 };
-
-
 
 const init = () => {
     populatePage();

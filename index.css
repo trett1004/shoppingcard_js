@@ -15,6 +15,12 @@ main {
     margin-bottom: 10px;
 }
 
+.productId {
+    display: none;
+    margin-top: 0px;
+    margin-bottom: 0px;
+}
+
 .productImages {
     width: 300px;
     height: 200px;
