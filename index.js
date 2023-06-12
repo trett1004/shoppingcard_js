@@ -1,5 +1,5 @@
 import { products } from './create_product.js';
-import { cardItems } from './shoppingcard.js';
+// import { cardItems } from './shoppingcard.js';
 
 // make a poduct in the DOM
 
@@ -13,13 +13,11 @@ const domMapping = () => {
 
 
 const appendEventlisteners = () => {
-
 }
 
 const addToCard = event => {
     // get the product ID from the klicked article
     const klickedID =  parseInt(event.target.parentNode.childNodes[0].innerHTML)
-    // cardItems['id'] = klickedID;
     if (cardItemExistanceCheck(cardItems, klickedID)) {
         const item = cardItems.find(item => item.id === klickedID);
         item.count = item.count + 1;
@@ -53,11 +51,6 @@ const populatePage = () => {
         const productContainer = document.createElement('div');
         productContainer.classList.add('productContainer')
         containerProducts.append(productContainer);
-        // Product Id
-        const productId = document.createElement('div');
-        productId.classList.add('productId')
-        productId.innerHTML = i["id"]
-        productContainer.append(productId)
         //image
         const image = document.createElement('img');
         image.src = i["image"];
