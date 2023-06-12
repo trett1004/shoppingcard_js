@@ -30,6 +30,7 @@ const addToCard = event => {
     }
 };
 
+
 const cardItemExistanceCheck = (array, id) => {
     if (array.some(obj => obj.id === id)) return true;
     else return false;
