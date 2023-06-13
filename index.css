@@ -1,7 +1,7 @@
 /* body*/
 body {
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif, sans-serif;
-  }
+}
 
 main {
     margin-top: 20px;
@@ -51,10 +51,22 @@ main {
 
 /* Shopping Card Specific */
 
+.cardProductContainer {
+    display: grid;
+    grid-template-columns: auto 1fr auto; /* Adjust the column widths as needed */
+    align-items: center; /* Align items vertically in the center */
+    grid-gap: 10px; /* Adjust the gap between items as needed */
+    margin: 0 0 20px 0;
+  }
+
 .shoppingCardImages {
     width: 150px;
     height: 100px;
 }
+.productHeader {
+    /* Add any additional styling for the header */
+  }
 
-
-
+  .price {
+    /* Add any additional styling for the price */
+  }

@@ -20,15 +20,8 @@ export const createProduct = (header, id, image, text, price, unit, priceunit) =
 };
 
 // create some products for display in shop (index.html)
-createProduct(
-    "Red Umbrella",
-    1,
-    './images/red_umbrella.jpeg',
-    "beautiful mushroom with nice red Umbrella",
-    16.99,
-    'piece',
-    'EUR'
-);
+createProduct("Red Umbrella", 1, './images/red_umbrella.jpeg', "beautiful mushroom with nice red Umbrella", 16.99, 'piece', 'EUR');
+
 createProduct("White Spikes", 2, './images/white_spiky.jpeg', "Mushroom with nice white spiky head", 2.99, 'piece', 'EUR');
 
 createProduct("Blue Glwoing Head", 4, './images/Blue_mushroom.jpeg', "Mushroom with a glowing head", 5.82, 'piece', 'EUR');

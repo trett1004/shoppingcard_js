@@ -13,6 +13,7 @@ const populateProducts = () => {
     cardItems.forEach(item => {
         // make a div for each product
         const cardProductContainer = document.createElement('div');
+        cardProductContainer.classList.add('cardProductContainer')
         cardContainerProducts.append(cardProductContainer);
         // check if product from shopping card exists in products from shop
         const id = item.id;
