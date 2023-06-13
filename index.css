@@ -10,9 +10,14 @@ main {
 }
 
 /* products in Shop */
+.containerProducts {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+}
+
 .productContainer {
-    margin-top: 50px;
-    margin-bottom: 10px;
+    margin: 30px 20px 10px 0px;
 }
 
 .productId {

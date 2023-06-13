@@ -31,7 +31,7 @@ createProduct(
 );
 createProduct("White Spikes", 2, './images/white_spiky.jpeg', "Mushroom with nice white spiky head", 2.99, 'piece', 'EUR');
 
-console.log('create products products', products)
+createProduct("Blue Glwoing Head", 4, './images/Blue_mushroom.jpeg', "Mushroom with a glowing head", 5.82, 'piece', 'EUR');
 
 
 

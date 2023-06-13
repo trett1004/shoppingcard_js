@@ -1,7 +1,7 @@
 import { products } from './data.js';
 import { cardItems } from './data.js';
 
-console.log('card Items:', products)
+
 // make a poduct in the DOM
 
 // KONSTANTEN / VARIABLEN
@@ -17,15 +17,14 @@ const appendEventlisteners = () => {
 }
 
 const addToCard = event => {
+    console.log('event', event.target.parentNode.childNodes)
     // get the product ID from the klicked article
     const klickedID =  parseInt(event.target.parentNode.childNodes[0].innerHTML)
     if (cardItemExistanceCheck(cardItems, klickedID)) {
         const item = cardItems.find(item => item.id === klickedID);
         item.count = item.count + 1;
-        console.log('updated quantity:', item)
     } else {
         cardItems.push({id:klickedID, count:1});
-        console.log('newly added to card:', {id:klickedID, count:1})
     }
 };
 
@@ -44,6 +43,7 @@ const populatePage = () => {
     const parent = document.querySelector('main');
     //create a  container for all products
     const containerProducts = document.createElement('div');
+    containerProducts.classList.add('containerProducts');
     parent.append(containerProducts);
 
     // create html from the product array
@@ -52,7 +52,12 @@ const populatePage = () => {
         const productContainer = document.createElement('div');
         productContainer.classList.add('productContainer')
         containerProducts.append(productContainer);
-        //image
+        // id
+        const id = document.createElement('div');
+        id.innerHTML = i["id"];
+        id.classList.add('productId');
+        productContainer.append(id);
+        // image
         const image = document.createElement('img');
         image.src = i["image"];
         image.classList.add('productImages');
