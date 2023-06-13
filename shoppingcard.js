@@ -1,6 +1,7 @@
-import {products} from './create_product.js'
+import { cardItems } from './data.js';
+import { products } from './data.js'
 
-export const cardItems = [{id:1, count:2}, {id:2, count:5}, {id:3, count: 3}]; // if this array is still filled, it is for testing purposes.
+console.log('cardItems:', cardItems)
 
 const populateProducts = () => {
     // make a main tag
@@ -15,11 +16,13 @@ const populateProducts = () => {
         cardContainerProducts.append(cardProductContainer);
         // check if product from shopping card exists in products from shop
         const id = item.id;
-        console.log('product id:', item.id);
         const product = products.find(obj => obj.id === item.id)
+        console.log('products:', products)
+        console.log('item id:', item.id);
+        console.log('product:', product);
         if (product) {
             // if product exists than display it in the DOM
-            console.log('object:', product);
+            console.log('hello');
             displayProduct(product, cardProductContainer)
         } else {
             console.log('Product not availabe')
@@ -27,11 +30,25 @@ const populateProducts = () => {
     })
 };
 
-const displayProduct = (product1, productContainer1) => {
-    const image1 = document.createElement('img');
-    productContainer1.append(image1);
-    image1.src = product1['image'];
-    image1.classList.add('productImages');
+const displayProduct = (product, productContainer) => {
+    // display image
+    const image = document.createElement('img');
+    productContainer.append(image);
+    image.classList.add('shoppingCardImages');
+    image.src = product['image'];
+    // display header
+    const header = document.createElement('h6');
+    header.classList.add('productHeader');
+    header.innerHTML = product['header'];
+    productContainer.append(header);
+    // display price
+    const price = document.createElement('p');
+    price.classList.add('price');
+    price.innerHTML = `${product["price"]} EUR`
+    productContainer.append(price);
+
+    // change quantity dropdown
+    // remove button
 };
 
 

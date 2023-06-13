@@ -44,6 +44,12 @@ main {
     font-size: 13px;
 }
 
+/* Shopping Card Specific */
+
+.shoppingCardImages {
+    width: 150px;
+    height: 100px;
+}
 
 
 

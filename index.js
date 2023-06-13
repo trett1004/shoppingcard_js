@@ -1,6 +1,7 @@
-import { products } from './create_product.js';
-// import { cardItems } from './shoppingcard.js';
+import { products } from './data.js';
+import { cardItems } from './data.js';
 
+console.log('card Items:', products)
 // make a poduct in the DOM
 
 // KONSTANTEN / VARIABLEN
@@ -28,7 +29,7 @@ const addToCard = event => {
     }
 };
 
-
+// check if product is in shoppingcard array
 const cardItemExistanceCheck = (array, id) => {
     if (array.some(obj => obj.id === id)) return true;
     else return false;
