@@ -19,7 +19,6 @@ const populateProducts = () => {
         if (product) {
             // if product exists than display it in the DOM
             displayProduct(product, cardProductContainer, item, cardProductContainer)
-            console.log('product:', product);
         } else {
             console.log('Product not availabe')
         }
@@ -94,7 +93,6 @@ const displayProduct = (product, productContainer, item, cardProductContainer) =
     const increase = (sum) => {
         currentCardItem.count = item.count + 1;
         // change display of quantity in inputfield and show-quantity-field according to increase
-        console.log('currentCardItem', currentCardItem)
         updateAndDisplaySum(sum);
     };
     increaseQantity.addEventListener('click', increase);
@@ -122,12 +120,8 @@ const displayProduct = (product, productContainer, item, cardProductContainer) =
     showSumAndDeleteOptionContainer.append(deleteBtn);
 
     const deleteItem = () => {
-        console.log('cardItems', cardItems)
-        console.log('delete current Card Item:', currentCardItem);
-        console.log('cardItems', cardItems)
         cardItems.splice(currentCardItem, 1);
         cardProductContainer.remove();
-        console.log('cardItems after remove', cardItems)
         //    const currentCardItem = cardItems[item.id - 1];
     };
     deleteBtn.addEventListener('click', deleteItem);
