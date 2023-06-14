@@ -27,9 +27,27 @@ const populateProducts = () => {
 };
 
 const displayProduct = (product, productContainer, item, cardProductContainer) => {
+
     // variables for multiple use within funtion
-    const currentCardItem = cardItems[item.id - 1];
+    //************************************************************** */
+    let currentCardItem = {};
+    const getCurrentCardItem = cardItems.forEach((item) => {
+        if (item.id === product.id) {
+            currentCardItem = item;
+            return currentCardItem;
+        }
+    });
+
     const sum = (product.price * item.count).toFixed(2);
+
+    const updateAndDisplaySum = (sum) => {
+        sum = (product.price * currentCardItem.count).toFixed(2);
+        showSum.innerHTML = `${sum} EUR`
+        showQuantityContainer.innerHTML = `${currentCardItem.count} x ${product.price} EUR`;
+        changeQuantityInput.value = currentCardItem.count;
+    }
+    //************************************************************** */
+
     // display image
     const image = document.createElement('img');
     productContainer.append(image);
@@ -76,6 +94,7 @@ const displayProduct = (product, productContainer, item, cardProductContainer) =
     const increase = (sum) => {
         currentCardItem.count = item.count + 1;
         // change display of quantity in inputfield and show-quantity-field according to increase
+        console.log('currentCardItem', currentCardItem)
         updateAndDisplaySum(sum);
     };
     increaseQantity.addEventListener('click', increase);
@@ -103,21 +122,15 @@ const displayProduct = (product, productContainer, item, cardProductContainer) =
     showSumAndDeleteOptionContainer.append(deleteBtn);
 
     const deleteItem = () => {
-        currentCardItem.count = 0;
-        console.log('currentCardItem.count', currentCardItem.count)
-        updateAndDisplaySum();
-
+        console.log('cardItems', cardItems)
+        console.log('delete current Card Item:', currentCardItem);
+        console.log('cardItems', cardItems)
+        cardItems.splice(currentCardItem, 1);
+        cardProductContainer.remove();
+        console.log('cardItems after remove', cardItems)
+        //    const currentCardItem = cardItems[item.id - 1];
     };
     deleteBtn.addEventListener('click', deleteItem);
-
-
-    const updateAndDisplaySum = (sum) => {
-        sum = (product.price * currentCardItem.count).toFixed(2);
-        showSum.innerHTML = `${sum} EUR`
-        showQuantityContainer.innerHTML = `${currentCardItem.count} x ${product.price} EUR`;
-        changeQuantityInput.value = currentCardItem.count;
-        cardProductContainer.remove();
-    }
 };
 
 
