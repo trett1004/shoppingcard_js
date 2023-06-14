@@ -53,11 +53,13 @@ const displayProduct = (product, productContainer, item) => {
         decreaseQantity.classList.add('bi', 'bi-dash-circle');
         changeQuantityContainer.append(decreaseQantity);
         // eventlistener decrease
-        const decrease = () => {
+        const decrease = (sum) => {
             currentCardItem.count = item.count - 1;
             // change display of quantity in inputfield and show-quantity-field according to increase
             changeQuantityInput.value = currentCardItem.count;
             showQuantityContainer.innerHTML = `${currentCardItem.count} x ${product.price} EUR`;
+            sum = (product.price * currentCardItem.count).toFixed(2);
+            showSum.innerHTML = `${sum} EUR`
         };
         decreaseQantity.addEventListener('click', decrease);
         // show quantitychange
@@ -71,18 +73,20 @@ const displayProduct = (product, productContainer, item) => {
         changeQuantityContainer.append(increaseQantity);
         //eventListener increase
         console.log('item', item)
-        const increase = () => {
+        const increase = (sum) => {
             currentCardItem.count = item.count + 1;
             // change display of quantity in inputfield and show-quantity-field according to increase
             changeQuantityInput.value = currentCardItem.count;
             showQuantityContainer.innerHTML = `${currentCardItem.count} x ${product.price} EUR`;
+            sum = (product.price * currentCardItem.count).toFixed(2);
+            showSum.innerHTML = `${sum} EUR`
         };
         increaseQantity.addEventListener('click', increase);
     // show Quantity and item price
     const showQuantityContainer = document.createElement('div');
     showQuantityContainer.classList.add('showQuantityContainer');
     productContainer.append(showQuantityContainer);
-    showQuantityContainer.innerHTML = `${item.count} x ${product.price} EUR`;
+    showQuantityContainer.innerHTML = `${currentCardItem.count} x ${product.price} EUR`;
     // show sum and delete option
     const showSumAndDeleteOptionContainer = document.createElement('div');
     showSumAndDeleteOptionContainer.classList.add('showSumAndDeleteOptionContainer');
@@ -97,6 +101,8 @@ const displayProduct = (product, productContainer, item) => {
         const deleteBtn = document.createElement('button');
         deleteBtn.classList.add('bi', 'bi-trash')
         showSumAndDeleteOptionContainer.append(deleteBtn);
+
+
 
     // display price
     // const price = document.createElement('p');
