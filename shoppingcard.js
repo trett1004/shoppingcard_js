@@ -18,20 +18,21 @@ const populateProducts = () => {
         // check if product from shopping card exists in products from shop
         const id = item.id;
         const product = products.find(obj => obj.id === item.id)
-        console.log('products:', products)
-        console.log('item id:', item.id);
-        console.log('product:', product);
+        // console.log('products:', products)
+        // console.log('item id:', item.id);
+        //
         if (product) {
             // if product exists than display it in the DOM
             console.log('hello');
-            displayProduct(product, cardProductContainer)
+            displayProduct(product, cardProductContainer, item)
+            console.log('product:', product);
         } else {
             console.log('Product not availabe')
         }
     })
 };
 
-const displayProduct = (product, productContainer) => {
+const displayProduct = (product, productContainer, item) => {
     // display image
     const image = document.createElement('img');
     productContainer.append(image);
@@ -68,6 +69,14 @@ const displayProduct = (product, productContainer) => {
     const showQuantityContainer = document.createElement('div');
     showQuantityContainer.classList.add('showQuantityContainer');
     productContainer.append(showQuantityContainer);
+    showQuantityContainer.innerHTML = `${item.count} x ${product.price} EUR`;
+
+
+
+
+
+
+
     // Show sum and delete option
     const showSumAndDeleteOption = document.createElement('div');
     showSumAndDeleteOption.classList.add('showSumAndDeleteOption');
