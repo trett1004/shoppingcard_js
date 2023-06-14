@@ -35,18 +35,60 @@ const displayProduct = (product, productContainer) => {
     // display image
     const image = document.createElement('img');
     productContainer.append(image);
-    image.classList.add('shoppingCardImages');
+    image.classList.add('shoppingImagesCard');
     image.src = product['image'];
     // display header
     const header = document.createElement('h6');
-    header.classList.add('productHeader');
+    header.classList.add('productHeaderCard');
     header.innerHTML = product['header'];
     productContainer.append(header);
-    // display price
+    // empty container
+    const empty1 = document.createElement('div');
+    empty1.innerhtml = ' ';
+    productContainer.append(empty1);
+    // Change Quantity
+    const changeQuantityContainer = document.createElement('div');
+    changeQuantityContainer.classList.add('changeQuantityContainer');
+    productContainer.append(changeQuantityContainer);
+        // make three items for '+' / 'changequantity' / '-'
+        // decrease button
+        const decreaseQantity = document.createElement('button');
+        decreaseQantity.classList.add('bi', 'bi-dash-circle');
+        changeQuantityContainer.append(decreaseQantity);
+        // show quantitychange
+        const changeQuantityInput= document.createElement('input');
+        changeQuantityInput.value = 1;
+        changeQuantityInput.id = 'changeQuantityInput';
+        changeQuantityContainer.append(changeQuantityInput);
+        // increase button
+        const increaseQantity = document.createElement('button');
+        increaseQantity.classList.add('bi', 'bi-plus-circle');
+        changeQuantityContainer.append(increaseQantity);
+    // Show Quantity and item price
+    const showQuantityContainer = document.createElement('div');
+    showQuantityContainer.classList.add('showQuantityContainer');
+    productContainer.append(showQuantityContainer);
+    // Show sum and delete option
+    const showSumAndDeleteOption = document.createElement('div');
+    showSumAndDeleteOption.classList.add('showSumAndDeleteOption');
+    productContainer.append(showSumAndDeleteOption);
+    // create a container for the price and append it to the last grid item
+    const priceContainer = document.createElement('div');
+    priceContainer.classList.add('priceContainer');
+    productContainer.appendChild(priceContainer);
+    // display price inside the price container
     const price = document.createElement('p');
-    price.classList.add('price');
-    price.innerHTML = `${product["price"]} EUR`
-    productContainer.append(price);
+    price.classList.add('priceCard');
+    price.innerHTML = `${product["price"]} EUR`;
+    priceContainer.appendChild(price);
+
+
+
+    // display price
+    // const price = document.createElement('p');
+    // price.classList.add('priceCard');
+    // price.innerHTML = `${product["price"]} EUR`
+    // productContainer.append(price);
 
     // change quantity dropdown
     // remove button

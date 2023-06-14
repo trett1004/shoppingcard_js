@@ -52,21 +52,44 @@ main {
 /* Shopping Card Specific */
 
 .cardProductContainer {
-    display: grid;
-    grid-template-columns: auto 1fr auto; /* Adjust the column widths as needed */
+    display: inline-grid;
+    grid-template-columns: repeat(7, 1fr) auto; /* Adjust the column widths and number of columns as needed */
     align-items: center; /* Align items vertically in the center */
-    grid-gap: 10px; /* Adjust the gap between items as needed */
-    margin: 0 0 20px 0;
+    grid-gap: 0px 20px; /* Adjust the gap between items as needed */
+    margin: 0px 0px 20px 0px;
+    width: 800px;
   }
 
-.shoppingCardImages {
+.shoppingImagesCard {
     width: 150px;
     height: 100px;
 }
-.productHeader {
-    /* Add any additional styling for the header */
+.productHeaderCard {
+    font-size: 12px;
+    margin-top: 5px;
+    margin-bottom: 0px;
   }
 
-  .price {
-    /* Add any additional styling for the price */
+.changeQuantityContainer {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+}
+
+#changeQuantityInput {
+    width: 30px;
+    text-align: center;
+}
+
+.showQuantityContainer {
+
+}
+
+.showSumAndDeleteOption{
+}
+
+  .priceCard {
+    align-items: left;
+    margin-top: 5px;
+    margin-bottom: 0px;
+    font-size: 13px;
   }
