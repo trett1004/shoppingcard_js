@@ -65,22 +65,23 @@ const displayProduct = (product, productContainer, item) => {
         const increaseQantity = document.createElement('button');
         increaseQantity.classList.add('bi', 'bi-plus-circle');
         changeQuantityContainer.append(increaseQantity);
-    // Show Quantity and item price
+    // show Quantity and item price
     const showQuantityContainer = document.createElement('div');
     showQuantityContainer.classList.add('showQuantityContainer');
     productContainer.append(showQuantityContainer);
     showQuantityContainer.innerHTML = `${item.count} x ${product.price} EUR`;
+    // show sum and delete option
+    const showSumAndDeleteOptionContainer = document.createElement('div');
+    showSumAndDeleteOptionContainer.classList.add('showSumAndDeleteOptionContainer');
+    productContainer.append(showSumAndDeleteOptionContainer);
+        // show sum
+        const showSum = document.createElement('p');
+        showSum.id = 'showSum';
+        const sum = (product.price * item.count).toFixed(2);
+        showSum.innerHTML = `${sum} EUR`
+        showSumAndDeleteOptionContainer.append(showSum);
 
 
-
-
-
-
-
-    // Show sum and delete option
-    const showSumAndDeleteOption = document.createElement('div');
-    showSumAndDeleteOption.classList.add('showSumAndDeleteOption');
-    productContainer.append(showSumAndDeleteOption);
     // create a container for the price and append it to the last grid item
     const priceContainer = document.createElement('div');
     priceContainer.classList.add('priceContainer');
