@@ -75,25 +75,44 @@ main {
     grid-template-columns: repeat(3, 1fr);
 }
 
+.changeQuantityBtn {
+    all: initial;
+    background-color: rgb(230, 230, 230);
+    border-radius: 5px;
+    padding: 7px 7px 5px 7px;
+}
+
+.changeQuantityBtn:hover {
+    background-color: rgb(180, 180, 180);
+    transform: scale(1.05);
+  }
+
 #changeQuantityInput {
     width: 30px;
     text-align: center;
+    border: none;
 }
 
 .showQuantityContainer {
-
+    font-size: 10px;
+    color: #43484D;
 }
 
 .showSumAndDeleteOptionContainer{
+    display: inline-flex;
 }
 
-#showSum{
-
+#showSum {
+align-items: left;
+margin-top: 5px;
+margin-bottom: 0px;
+font-size: 12px;
 }
 
-  .priceCard {
-    align-items: left;
-    margin-top: 5px;
-    margin-bottom: 0px;
-    font-size: 13px;
-  }
+.deletBtn {
+    all: initial;
+    background-color: rgb(230, 230, 230);
+    border-radius: 5px;
+    padding: 7px 7px 5px 7px;
+    margin-left: 10px;
+}
