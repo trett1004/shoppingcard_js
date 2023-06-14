@@ -80,6 +80,10 @@ const displayProduct = (product, productContainer, item) => {
         const sum = (product.price * item.count).toFixed(2);
         showSum.innerHTML = `${sum} EUR`
         showSumAndDeleteOptionContainer.append(showSum);
+        // delete button
+        const deleteBtn = document.createElement('button');
+        deleteBtn.classList.add('bi', 'bi-trash')
+        showSumAndDeleteOptionContainer.append(deleteBtn);
 
 
     // create a container for the price and append it to the last grid item
