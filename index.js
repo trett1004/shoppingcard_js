@@ -20,12 +20,17 @@ const addToCard = event => {
     console.log('event', event.target.parentNode.childNodes)
     // get the product ID from the klicked article
     const klickedID =  parseInt(event.target.parentNode.childNodes[0].innerHTML)
+    // if the card item exists in the card Items array
     if (cardItemExistanceCheck(cardItems, klickedID)) {
         const item = cardItems.find(item => item.id === klickedID);
+        // either increment the card item by 1
         item.count = item.count + 1;
     } else {
+        // push new to the array
         cardItems.push({id:klickedID, count:1});
     }
+    /// update local storage
+    updateLocalStorage();
 };
 
 // check if product is in shoppingcard array
@@ -34,9 +39,11 @@ const cardItemExistanceCheck = (array, id) => {
     else return false;
 };
 
-const createNewCardItem = (idNumber) => {
-    return {id:idNumber, count:1}
-}
+const updateLocalStorage = () => {
+    let card = JSON.stringify(cardItems)
+    localStorage.setItem('card', card);
+    console.log('local storage updated!')
+};
 
 const populatePage = () => {
     // make a main tag
@@ -92,21 +99,10 @@ const init = () => {
     populatePage();
     domMapping();
     appendEventlisteners();
+    updateLocalStorage();
 }
 
 // INIT
 document.addEventListener('DOMContentLoaded', init);
 
 
-
-/*
-let product = {
-    "header": header,
-    "id": id,
-    "image": image,
-    "productText": text,
-    "price": price,
-    "unit": unit,
-    "priceunit": priceunit
-};
-*/

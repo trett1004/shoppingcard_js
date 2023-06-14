@@ -6,7 +6,11 @@ body {
 main {
     margin-top: 20px;
     margin-left: 10px;
+}
 
+h1 {
+    margin-bottom: 100px;
+    font-size: 100px;
 }
 
 /* products in Shop */

@@ -1,6 +1,8 @@
 import { cardItems } from './data.js';
 import { products } from './data.js'
 
+console.log('shoppingcard cardItems', cardItems)
+
 const populateProducts = () => {
     // make a main tag
     const main = document.querySelector('main');
@@ -141,6 +143,5 @@ const init = () => {
 document.addEventListener('DOMContentLoaded', init);
 
 // TODO
-// show the purchase quantity of the id
-// show the Euro sum of quantity and price
 // after the loop show the sum of purchase
+// change flickering of delete button during change of quantity
