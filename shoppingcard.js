@@ -52,6 +52,14 @@ const displayProduct = (product, productContainer, item) => {
         const decreaseQantity = document.createElement('button');
         decreaseQantity.classList.add('bi', 'bi-dash-circle');
         changeQuantityContainer.append(decreaseQantity);
+        // eventlistener decrease
+        const decrease = () => {
+            currentCardItem.count = item.count - 1;
+            // change display of quantity in inputfield and show-quantity-field according to increase
+            changeQuantityInput.value = currentCardItem.count;
+            showQuantityContainer.innerHTML = `${currentCardItem.count} x ${product.price} EUR`;
+        };
+        decreaseQantity.addEventListener('click', decrease);
         // show quantitychange
         const changeQuantityInput= document.createElement('input');
         changeQuantityInput.value = currentCardItem.count;
@@ -64,10 +72,7 @@ const displayProduct = (product, productContainer, item) => {
         //eventListener increase
         console.log('item', item)
         const increase = () => {
-            console.log('currCardItem count before:', currentCardItem.count);
             currentCardItem.count = item.count + 1;
-            console.log('currCardItem count after:', currentCardItem.count);
-            console.log('cardItems:', cardItems)
             // change display of quantity in inputfield and show-quantity-field according to increase
             changeQuantityInput.value = currentCardItem.count;
             showQuantityContainer.innerHTML = `${currentCardItem.count} x ${product.price} EUR`;
