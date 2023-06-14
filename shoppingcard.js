@@ -1,8 +1,6 @@
 import { cardItems } from './data.js';
 import { products } from './data.js'
 
-console.log('cardItems:', cardItems)
-
 const populateProducts = () => {
     // make a main tag
     const main = document.querySelector('main');
@@ -18,12 +16,8 @@ const populateProducts = () => {
         // check if product from shopping card exists in products from shop
         const id = item.id;
         const product = products.find(obj => obj.id === item.id)
-        // console.log('products:', products)
-        // console.log('item id:', item.id);
-        //
         if (product) {
             // if product exists than display it in the DOM
-            console.log('hello');
             displayProduct(product, cardProductContainer, item)
             console.log('product:', product);
         } else {
@@ -33,6 +27,8 @@ const populateProducts = () => {
 };
 
 const displayProduct = (product, productContainer, item) => {
+    // id of current card item
+    const currentCardItem = cardItems[item.id - 1];
     // display image
     const image = document.createElement('img');
     productContainer.append(image);
@@ -58,13 +54,25 @@ const displayProduct = (product, productContainer, item) => {
         changeQuantityContainer.append(decreaseQantity);
         // show quantitychange
         const changeQuantityInput= document.createElement('input');
-        changeQuantityInput.value = 1;
+        changeQuantityInput.value = currentCardItem.count;
         changeQuantityInput.id = 'changeQuantityInput';
         changeQuantityContainer.append(changeQuantityInput);
         // increase button
         const increaseQantity = document.createElement('button');
         increaseQantity.classList.add('bi', 'bi-plus-circle');
         changeQuantityContainer.append(increaseQantity);
+        //eventListener increase
+        console.log('item', item)
+        const increase = () => {
+            console.log('currCardItem count before:', currentCardItem.count);
+            currentCardItem.count = item.count + 1;
+            console.log('currCardItem count after:', currentCardItem.count);
+            console.log('cardItems:', cardItems)
+            // change display of quantity in inputfield and show-quantity-field according to increase
+            changeQuantityInput.value = currentCardItem.count;
+            showQuantityContainer.innerHTML = `${currentCardItem.count} x ${product.price} EUR`;
+        };
+        increaseQantity.addEventListener('click', increase);
     // show Quantity and item price
     const showQuantityContainer = document.createElement('div');
     showQuantityContainer.classList.add('showQuantityContainer');
