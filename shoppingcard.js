@@ -85,19 +85,6 @@ const displayProduct = (product, productContainer, item) => {
         deleteBtn.classList.add('bi', 'bi-trash')
         showSumAndDeleteOptionContainer.append(deleteBtn);
 
-
-    // create a container for the price and append it to the last grid item
-    const priceContainer = document.createElement('div');
-    priceContainer.classList.add('priceContainer');
-    productContainer.appendChild(priceContainer);
-    // display price inside the price container
-    const price = document.createElement('p');
-    price.classList.add('priceCard');
-    price.innerHTML = `${product["price"]} EUR`;
-    priceContainer.appendChild(price);
-
-
-
     // display price
     // const price = document.createElement('p');
     // price.classList.add('priceCard');
