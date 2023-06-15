@@ -9,8 +9,9 @@ main {
 }
 
 h1 {
-    margin-bottom: 100px;
-    font-size: 100px;
+    color: red;
+    font-size: 24px;
+    /* Add more styles as desired */
 }
 
 /* products in Shop */
@@ -91,7 +92,7 @@ h1 {
     transform: scale(1.05);
   }
 
-#changeQuantityInput {
+.changeQuantityInput {
     width: 30px;
     text-align: center;
     border: none;
@@ -106,7 +107,7 @@ h1 {
     display: inline-flex;
 }
 
-#showSum {
+.showSum {
 align-items: left;
 margin-top: 5px;
 margin-bottom: 0px;

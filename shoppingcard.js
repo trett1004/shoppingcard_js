@@ -1,7 +1,17 @@
-import { cardItems } from './data.js';
-import { products } from './data.js'
+import { products } from './data.js';
 
-console.log('shoppingcard cardItems', cardItems)
+const getStorage = () =>  {
+    let cardString = localStorage.getItem('card');
+    let card = JSON.parse(cardString);
+    return card;
+};
+
+const updateLocalStorage = (obj) => {
+    let card = JSON.stringify(obj)
+    localStorage.setItem('card', card);
+};
+
+const cardObject = getStorage();
 
 const populateProducts = () => {
     // make a main tag
@@ -10,7 +20,7 @@ const populateProducts = () => {
     const cardContainerProducts = document.createElement('div');
     main.append(cardContainerProducts);
     // display each item in the dom with all needed infos from the object
-    cardItems.forEach(item => {
+    cardObject.forEach(item => {
         // make a div for each product
         const cardProductContainer = document.createElement('div');
         cardProductContainer.classList.add('cardProductContainer')
@@ -31,111 +41,93 @@ const displayProduct = (product, productContainer, item, cardProductContainer) =
 
     // variables for multiple use within funtion
     //************************************************************** */
+
+    // function that returns the current product from the card
     let currentCardItem = {};
-    const getCurrentCardItem = cardItems.forEach((item) => {
-        if (item.id === product.id) {
-            currentCardItem = item;
-            return currentCardItem;
-        }
+    let currentPositionInCardObjectArray = -1;
+    const getCurrentCardItem = cardObject.find((item) => {
+        currentPositionInCardObjectArray += 1;
+        return item.id === product.id;
     });
 
+    // sum of quantity from shopping card and product price
     const sum = (product.price * item.count).toFixed(2);
 
     const updateAndDisplaySum = (sum) => {
-        sum = (product.price * currentCardItem.count).toFixed(2);
+        sum = (product.price * getCurrentCardItem.count).toFixed(2);
         showSum.innerHTML = `${sum} €`
-        showQuantityContainer.innerHTML = `${currentCardItem.count} x ${product.price} €`;
-        changeQuantityInput.value = currentCardItem.count;
+        showQuantityContainer.innerHTML = `${getCurrentCardItem.count} x ${product.price} €`;
+        changeQuantityInput.value = getCurrentCardItem.count;
     }
+
+    // create an Element in the DOM
+    const createElementAndAppend = (parentElement, elementType, classNames, content) => {
+        const newElement = document.createElement(elementType);
+        if (Array.isArray(classNames)) {
+          classNames.forEach(className => {
+            newElement.classList.add(className);
+          });
+        } else if (typeof classNames === 'string') {
+          newElement.classList.add(classNames);
+        }
+        newElement.innerHTML = content;
+        parentElement.appendChild(newElement);
+
+        return newElement;
+      };
+
     //************************************************************** */
 
     // display image
-    const image = document.createElement('img');
-    productContainer.append(image);
-    image.classList.add('shoppingImagesCard');
+    const image = createElementAndAppend(productContainer, 'img', 'shoppingImagesCard');
     image.src = product['image'];
     // display header
-    const header = document.createElement('h6');
-    header.classList.add('productHeaderCard');
-    header.innerHTML = product['header'];
-    productContainer.append(header);
-    // display empty container
-    const empty1 = document.createElement('div');
-    empty1.innerhtml = ' ';
-    productContainer.append(empty1);
-
-    // display Change Quantity with plus and minus
-    //************************************************************** */
+    const header = createElementAndAppend(productContainer, 'h6', 'productHeaderCard', product['header']);
+    const empty1 = createElementAndAppend(productContainer, 'div', 'empty', ' ');
     //container
-    const changeQuantityContainer = document.createElement('div');
-    changeQuantityContainer.classList.add('changeQuantityContainer');
-    productContainer.append(changeQuantityContainer);
-    // make three items for '+' / 'changequantity' / '-'
+    const changeQuantityContainer = createElementAndAppend(productContainer, 'div', 'changeQuantityContainer', '');
     // decrease button
-    const decreaseQantity = document.createElement('button');
-    decreaseQantity.classList.add('changeQuantityBtn', 'bi', 'bi-dash-circle', 'ms-auto');
-    changeQuantityContainer.append(decreaseQantity);
+    const decreaseQantity = createElementAndAppend(changeQuantityContainer, 'button', ['changeQuantityBtn', 'bi', 'bi-dash-circle', 'ms-auto'], '');
     // eventlistener decrease
     const decrease = (sum) => {
-        currentCardItem.count = item.count - 1;
-        // change display of quantity in inputfield and show-quantity-field according to increase
+        getCurrentCardItem.count = item.count - 1;
+        // change display of quantity in inputfield and show-quantity-field according to decrease
         updateAndDisplaySum(sum);
+        updateLocalStorage(cardObject);
     };
     decreaseQantity.addEventListener('click', decrease);
-    // show quantitychange
-    const changeQuantityInput = document.createElement('input');
-    changeQuantityInput.value = currentCardItem.count;
-    changeQuantityInput.id = 'changeQuantityInput';
-    changeQuantityContainer.append(changeQuantityInput);
+    // show quantitychange input field
+    const changeQuantityInput = createElementAndAppend(changeQuantityContainer, 'input', 'changeQuantityInput', '');
+    changeQuantityInput.value = getCurrentCardItem.count;
     // increase button
-    const increaseQantity = document.createElement('button');
-    increaseQantity.classList.add('changeQuantityBtn', 'bi', 'bi-plus-circle', 'ms-auto');
-    changeQuantityContainer.append(increaseQantity);
+    const increaseQantity = createElementAndAppend(changeQuantityContainer, 'button', ['changeQuantityBtn', 'bi', 'bi-plus-circle', 'ms-auto'], '');
     //eventListener increase
     const increase = (sum) => {
-        currentCardItem.count = item.count + 1;
+        getCurrentCardItem.count = item.count + 1;
         // change display of quantity in inputfield and show-quantity-field according to increase
         updateAndDisplaySum(sum);
+        updateLocalStorage(cardObject);
     };
     increaseQantity.addEventListener('click', increase);
-
-
     // display empty container
-    const empty2 = document.createElement('div');
-    empty1.innerhtml = ' ';
-    productContainer.append(empty2);
-
+    const empty2 = createElementAndAppend(productContainer, 'div', 'empty', ' ');
     // show and change display Quantity and item price
-    const showQuantityContainer = document.createElement('div');
-    showQuantityContainer.classList.add('showQuantityContainer');
-    productContainer.append(showQuantityContainer);
-    showQuantityContainer.innerHTML = `${currentCardItem.count} x ${product.price} €`;
-
-    //************************************************************** */
+    const showQuantityContainer = createElementAndAppend(productContainer, 'div', 'showQuantityContainer', `${getCurrentCardItem.count} x ${product.price} €`);
     // show sum and delete option
-    const showSumAndDeleteOptionContainer = document.createElement('div');
-    showSumAndDeleteOptionContainer.classList.add('showSumAndDeleteOptionContainer');
-    productContainer.append(showSumAndDeleteOptionContainer);
+    const showSumAndDeleteOptionContainer = createElementAndAppend(productContainer, 'div', 'showSumAndDeleteOptionContainer', '');
     // show sum
-    const showSum = document.createElement('p');
-    showSum.id = 'showSum';
-    showSum.innerHTML = `${sum} €`
-    showSumAndDeleteOptionContainer.append(showSum);
-    // delete button
-    const deleteBtn = document.createElement('button');
-    deleteBtn.classList.add('deletBtn', 'bi', 'bi-trash')
-    showSumAndDeleteOptionContainer.append(deleteBtn);
-
+    const showSum = createElementAndAppend(showSumAndDeleteOptionContainer, 'p', 'showSum', `${sum} €`);
+    // delete button with eventListener
+    const deleteBtn = createElementAndAppend(showSumAndDeleteOptionContainer, 'button', ['deletBtn', 'bi', 'bi-trash'], '');
     const deleteItem = () => {
-        cardItems.splice(currentCardItem, 1);
+        cardObject.splice(currentPositionInCardObjectArray, 1);
+        updateLocalStorage(cardObject);
         cardProductContainer.remove();
-        //    const currentCardItem = cardItems[item.id - 1];
     };
     deleteBtn.addEventListener('click', deleteItem);
 };
 
-
-const init = () => {
+      const init = () => {
     populateProducts();
 }
 

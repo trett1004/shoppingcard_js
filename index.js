@@ -1,6 +1,4 @@
 import { products } from './data.js';
-import { cardItems } from './data.js';
-
 
 // make a poduct in the DOM
 
@@ -12,25 +10,35 @@ const domMapping = () => {
     elements.main = document.querySelector('main');
 }
 
-
 const appendEventlisteners = () => {
 }
 
+const getStorage = () =>  {
+    let cardString = localStorage.getItem('card');
+    let card = JSON.parse(cardString);
+    return card;
+};
+
+let LS = getStorage();
+
 const addToCard = event => {
-    console.log('event', event.target.parentNode.childNodes)
     // get the product ID from the klicked article
     const klickedID =  parseInt(event.target.parentNode.childNodes[0].innerHTML)
     // if the card item exists in the card Items array
-    if (cardItemExistanceCheck(cardItems, klickedID)) {
-        const item = cardItems.find(item => item.id === klickedID);
+
+    if (cardItemExistanceCheck(LS, klickedID)) {
+        const item = LS.find(item => item.id === klickedID);
         // either increment the card item by 1
         item.count = item.count + 1;
+        updateLocalStorage();
     } else {
         // push new to the array
-        cardItems.push({id:klickedID, count:1});
+        LS.push({id:klickedID, count:1});
+        updateLocalStorage();
     }
     /// update local storage
-    updateLocalStorage();
+    getStorage();
+    // updateLocalStorage();
 };
 
 // check if product is in shoppingcard array
@@ -40,7 +48,7 @@ const cardItemExistanceCheck = (array, id) => {
 };
 
 const updateLocalStorage = () => {
-    let card = JSON.stringify(cardItems)
+    let card = JSON.stringify(LS);
     localStorage.setItem('card', card);
     console.log('local storage updated!')
 };
@@ -99,7 +107,7 @@ const init = () => {
     populatePage();
     domMapping();
     appendEventlisteners();
-    updateLocalStorage();
+    getStorage();
 }
 
 // INIT
