@@ -8,17 +8,27 @@ main {
     margin-left: 10px;
 }
 
-h1 {
-    color: red;
-    font-size: 24px;
-    /* Add more styles as desired */
+.headerContainer {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    width: 800px;
+}
+
+.header {
+    align-self: flex-start;
+}
+
+.shoppingCardButton {
+    align-self: center;
+    margin-right: 180px;
 }
 
 /* products in Shop */
 .containerProducts {
-    display: flex;
-    flex-direction: row;
+    display: inline-flex;
     flex-wrap: wrap;
+    width: 800px;
 }
 
 .productContainer {
@@ -56,11 +66,14 @@ h1 {
 
 /* Shopping Card Specific */
 
+.containerProducts {
+    width: 800px;
+}
 .cardProductContainer {
     display: inline-grid;
-    grid-template-columns: repeat(7, 1fr) auto; /* Adjust the column widths and number of columns as needed */
-    align-items: center; /* Align items vertically in the center */
-    grid-gap: 0px 20px; /* Adjust the gap between items as needed */
+    grid-template-columns: repeat(7, 1fr) auto;
+    align-items: center;
+    grid-gap: 0px 20px;
     margin: 0px 0px 20px 0px;
     width: 800px;
   }
