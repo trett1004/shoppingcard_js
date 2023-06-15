@@ -13,6 +13,7 @@ main {
     flex-direction: row;
     justify-content: space-between;
     width: 800px;
+    margin-bottom: 20px;
 }
 
 .header {
@@ -32,7 +33,7 @@ main {
 }
 
 .productContainer {
-    margin: 30px 20px 10px 0px;
+    margin: 0px 20px 10px 0px;
 }
 
 .productId {
@@ -66,12 +67,16 @@ main {
 
 /* Shopping Card Specific */
 
+.backToShopButton{
+    margin-right: 10px;
+    align-self: center;
+}
 .containerProducts {
     width: 800px;
 }
 .cardProductContainer {
     display: inline-grid;
-    grid-template-columns: repeat(7, 1fr) auto;
+    grid-template-columns: repeat(6, 1fr) 2fr auto;
     align-items: center;
     grid-gap: 0px 20px;
     margin: 0px 0px 20px 0px;
@@ -118,10 +123,11 @@ main {
 
 .showSumAndDeleteOptionContainer{
     display: inline-flex;
+    justify-content: end;
 }
 
 .showSum {
-align-items: left;
+align-items: end;
 margin-top: 5px;
 margin-bottom: 0px;
 font-size: 12px;
