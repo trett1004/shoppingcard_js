@@ -136,4 +136,3 @@ document.addEventListener('DOMContentLoaded', init);
 
 // TODO
 // after the loop show the sum of purchase
-// change flickering of delete button during change of quantity
